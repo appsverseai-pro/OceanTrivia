@@ -34,21 +34,14 @@ html, body {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160'%3E%3Cpath fill='rgba(0,150,255,0.07)' d='M0,80 C360,160 1080,0 1440,80 L1440,160 L0,160 Z'/%3E%3C/svg%3E") repeat-x bottom;
   animation: wave-drift 12s linear infinite;
 }
-.wave-layer:nth-child(2) {
-  height: 120px; opacity: 0.5;
-  animation-duration: 18s; animation-direction: reverse;
-}
-.wave-layer:nth-child(3) {
-  height: 90px; opacity: 0.3;
-  animation-duration: 22s;
-}
+.wave-layer:nth-child(2) { height: 120px; opacity: 0.5; animation-duration: 18s; animation-direction: reverse; }
+.wave-layer:nth-child(3) { height: 90px; opacity: 0.3; animation-duration: 22s; }
 
 @keyframes wave-drift {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* Floating particles (bubbles) */
 #bubbles { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 .bubble {
   position: absolute;
@@ -64,12 +57,9 @@ html, body {
   100% { transform: translateY(-15vh) translateX(var(--drift, 30px)) scale(1.1); opacity: 0; }
 }
 
-/* Star particles */
 .star-particle {
-  position: absolute;
-  width: 2px; height: 2px;
-  background: white;
-  border-radius: 50%;
+  position: absolute; width: 2px; height: 2px;
+  background: white; border-radius: 50%;
   animation: twinkle ease-in-out infinite;
 }
 @keyframes twinkle {
@@ -80,9 +70,7 @@ html, body {
 /* ============================================================
    SLIDESHOW ENGINE
    ============================================================ */
-#slideshow {
-  position: fixed; inset: 0; z-index: 10;
-}
+#slideshow { position: fixed; inset: 0; z-index: 10; }
 
 .slide {
   position: absolute; inset: 0;
@@ -93,8 +81,8 @@ html, body {
   padding: 24px 32px;
 }
 .slide.active { display: flex; }
-.slide.slide-enter { animation: enterRight 0.45s cubic-bezier(.4,0,.2,1) forwards; }
-.slide.slide-leave { animation: leaveLeft  0.45s cubic-bezier(.4,0,.2,1) forwards; }
+.slide.slide-enter      { animation: enterRight 0.45s cubic-bezier(.4,0,.2,1) forwards; }
+.slide.slide-leave      { animation: leaveLeft  0.45s cubic-bezier(.4,0,.2,1) forwards; }
 .slide.slide-enter-back { animation: enterLeft  0.45s cubic-bezier(.4,0,.2,1) forwards; }
 .slide.slide-leave-back { animation: leaveRight 0.45s cubic-bezier(.4,0,.2,1) forwards; }
 
@@ -104,145 +92,198 @@ html, body {
 @keyframes leaveRight { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(80px); } }
 
 /* ============================================================
-   PROGRESS BAR
+   PROGRESS BAR & NAV
    ============================================================ */
 #progress-bar {
-  position: fixed; bottom: 0; left: 0;
-  height: 5px;
+  position: fixed; bottom: 0; left: 0; height: 5px;
   background: linear-gradient(90deg, #00d4ff, #00ff99, #ff6b35);
-  transition: width 0.4s ease;
-  z-index: 999;
+  transition: width 0.4s ease; z-index: 999;
   box-shadow: 0 0 8px rgba(0,212,255,0.6);
 }
 
-/* ============================================================
-   NAV CONTROLS
-   ============================================================ */
 #nav-controls {
   position: fixed; bottom: 18px; right: 24px;
-  display: flex; align-items: center; gap: 10px;
-  z-index: 999;
+  display: flex; align-items: center; gap: 10px; z-index: 999;
 }
 .nav-btn {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  padding: 9px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  backdrop-filter: blur(8px);
-  transition: background 0.2s, transform 0.1s;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; padding: 9px 20px; border-radius: 10px; cursor: pointer;
+  font-size: 15px; font-weight: 700; letter-spacing: 1px;
+  backdrop-filter: blur(8px); transition: background 0.2s, transform 0.1s;
 }
 .nav-btn:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
 .nav-btn:active { transform: translateY(0); }
 
-#slide-counter {
-  color: rgba(255,255,255,0.5);
-  font-size: 13px;
-  min-width: 60px;
-  text-align: center;
-}
+#slide-counter { color: rgba(255,255,255,0.5); font-size: 13px; min-width: 60px; text-align: center; }
 
 #fs-btn {
   position: fixed; top: 16px; right: 20px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.5);
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  z-index: 999;
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5); padding: 6px 14px; border-radius: 8px;
+  cursor: pointer; font-size: 13px; z-index: 999; backdrop-filter: blur(8px);
 }
 #fs-btn:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.15); }
 
-/* ============================================================
-   CONFETTI CANVAS
-   ============================================================ */
-#confetti-canvas {
-  position: fixed; inset: 0;
-  pointer-events: none;
-  z-index: 900;
-}
+#confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 900; }
 
 /* ============================================================
-   SLIDE: INTRO TITLE
+   SLIDE: INTRO
    ============================================================ */
-.intro-slide {
-  gap: 0;
-}
 .intro-title-top {
-  font-size: clamp(16px, 2.5vw, 28px);
-  letter-spacing: 10px;
-  text-transform: uppercase;
-  color: rgba(100,220,255,0.8);
+  font-size: clamp(16px, 2.5vw, 28px); letter-spacing: 10px;
+  text-transform: uppercase; color: rgba(100,220,255,0.8);
   animation: fadeUp 1s ease 0.3s both;
 }
 .intro-main-title {
-  font-size: clamp(56px, 11vw, 130px);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  line-height: 0.95;
-  text-align: center;
+  font-size: clamp(56px, 11vw, 130px); font-weight: 900;
+  text-transform: uppercase; letter-spacing: 5px; line-height: 0.95; text-align: center;
   background: linear-gradient(135deg, #00e5ff 0%, #00ffcc 40%, #0099ff 70%, #aa00ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: fadeUp 1s ease 0.5s both, titleGlow 4s ease-in-out 1.5s infinite;
-  filter: drop-shadow(0 0 30px rgba(0,200,255,0.4));
 }
 @keyframes titleGlow {
   0%, 100% { filter: drop-shadow(0 0 20px rgba(0,200,255,0.3)); }
   50%       { filter: drop-shadow(0 0 60px rgba(0,200,255,0.7)); }
 }
 .intro-subtitle {
-  font-size: clamp(18px, 3vw, 38px);
-  font-weight: 700;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: #7ff0ff;
-  margin-top: 10px;
+  font-size: clamp(18px, 3vw, 38px); font-weight: 700; letter-spacing: 6px;
+  text-transform: uppercase; color: #7ff0ff; margin-top: 10px;
   animation: fadeUp 1s ease 0.7s both;
 }
 .intro-divider {
   width: 200px; height: 3px;
   background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-  margin: 20px auto;
-  animation: fadeUp 1s ease 0.9s both;
+  margin: 20px auto; animation: fadeUp 1s ease 0.9s both;
 }
 .intro-instructions {
-  font-size: clamp(14px, 1.8vw, 22px);
-  color: rgba(255,255,255,0.55);
-  text-align: center;
-  animation: fadeUp 1s ease 1.1s both, pulse-opacity 2.5s ease 2s infinite;
-  margin-top: 8px;
+  font-size: clamp(14px, 1.8vw, 22px); color: rgba(255,255,255,0.55); text-align: center;
+  animation: fadeUp 1s ease 1.1s both, pulse-opacity 2.5s ease 2s infinite; margin-top: 8px;
 }
-.intro-round-info {
-  display: flex; gap: 20px; margin-top: 30px;
-  animation: fadeUp 1s ease 1.3s both;
-}
+.intro-round-info { display: flex; gap: 20px; margin-top: 30px; animation: fadeUp 1s ease 1.3s both; }
 .round-pill {
-  background: rgba(0,212,255,0.15);
-  border: 1px solid rgba(0,212,255,0.4);
-  border-radius: 50px;
-  padding: 10px 24px;
-  font-size: clamp(12px, 1.5vw, 18px);
-  font-weight: 600;
-  color: #7ff0ff;
+  background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 50px; padding: 10px 24px;
+  font-size: clamp(12px, 1.5vw, 18px); font-weight: 600; color: #7ff0ff;
 }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes pulse-opacity {
-  0%, 100% { opacity: 0.55; }
-  50%       { opacity: 1; }
+@keyframes pulse-opacity { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* ============================================================
+   SLIDE: TEAM REGISTRATION
+   ============================================================ */
+.teamreg-slide {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 28px 32px 80px;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 40px;
+}
+.teamreg-title {
+  font-size: clamp(28px, 4.5vw, 58px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #00e5ff, #00ff88);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  text-align: center;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+.teamreg-sub {
+  font-size: clamp(13px, 1.8vw, 20px);
+  color: rgba(200,230,255,0.7);
+  text-align: center;
+  animation: fadeUp 0.8s ease 0.35s both;
+}
+.team-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: min(680px, 92vw);
+  animation: fadeUp 0.8s ease 0.5s both;
+}
+.team-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,40,90,0.45);
+  border: 1px solid rgba(0,180,255,0.22);
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: border-color 0.2s;
+}
+.team-input-row:focus-within {
+  border-color: rgba(0,212,255,0.55);
+  box-shadow: 0 0 10px rgba(0,180,255,0.15);
+}
+.team-input-number {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(0,180,255,0.2);
+  border: 1px solid rgba(0,200,255,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #7ff0ff; flex-shrink: 0;
+}
+.team-name-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: clamp(13px, 1.6vw, 18px);
+  font-weight: 600;
+  color: #fff;
+  font-family: inherit;
+}
+.team-name-input::placeholder { color: rgba(150,200,255,0.3); }
+.remove-team-btn {
+  background: rgba(255,80,80,0.12);
+  border: 1px solid rgba(255,100,100,0.25);
+  color: rgba(255,140,140,0.6);
+  border-radius: 6px; width: 22px; height: 22px;
+  cursor: pointer; font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0; line-height: 1;
+  padding: 0;
+}
+.remove-team-btn:hover { background: rgba(255,80,80,0.3); color: #ff8888; }
+
+.teamreg-actions {
+  display: flex; gap: 12px; margin-top: 8px;
+  flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.8s ease 0.65s both;
+}
+.ocean-btn {
+  padding: 11px 26px; border-radius: 13px;
+  font-size: clamp(13px, 1.7vw, 18px);
+  font-weight: 700; cursor: pointer; font-family: inherit;
+  letter-spacing: 0.5px; transition: transform 0.15s, box-shadow 0.15s;
+  border: none;
+}
+.ocean-btn:active { transform: translateY(1px); }
+.ocean-btn.primary {
+  background: linear-gradient(135deg, #00b4d8, #00e5ff);
+  color: #002840;
+  box-shadow: 0 0 18px rgba(0,200,255,0.35);
+}
+.ocean-btn.primary:hover { box-shadow: 0 0 28px rgba(0,200,255,0.65); transform: translateY(-2px); }
+.ocean-btn.secondary {
+  background: rgba(0,60,130,0.4);
+  color: #7ff0ff;
+  border: 1px solid rgba(0,180,255,0.28);
+}
+.ocean-btn.secondary:hover { background: rgba(0,60,130,0.6); transform: translateY(-1px); }
+.teamreg-skip {
+  font-size: 12px; color: rgba(255,255,255,0.22);
+  margin-top: 2px; text-align: center;
+  animation: fadeUp 0.8s ease 0.8s both;
 }
 
 /* ============================================================
@@ -251,378 +292,222 @@ html, body {
 .question-slide {
   display: grid !important;
   grid-template-rows: auto 1fr auto;
-  gap: 12px;
-  width: 100%;
-  height: 100%;
+  gap: 12px; width: 100%; height: 100%;
   padding: 16px 28px 60px;
 }
-
-.q-header {
-  display: flex; align-items: center; gap: 14px;
-  padding: 4px 0;
-}
+.q-header { display: flex; align-items: center; gap: 14px; padding: 4px 0; }
 .q-number-badge {
-  font-size: clamp(14px, 1.8vw, 22px);
-  font-weight: 900;
-  padding: 7px 20px;
-  border-radius: 50px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-size: clamp(14px, 1.8vw, 22px); font-weight: 900;
+  padding: 7px 20px; border-radius: 50px; letter-spacing: 2px; text-transform: uppercase;
 }
-.q-number-badge.round1 {
-  background: linear-gradient(135deg, #ff6b35, #ff9500);
-  box-shadow: 0 0 18px rgba(255,107,53,0.5);
-}
-.q-number-badge.round2 {
-  background: linear-gradient(135deg, #00b894, #00cec9);
-  box-shadow: 0 0 18px rgba(0,184,148,0.5);
-}
+.q-number-badge.round1 { background: linear-gradient(135deg, #ff6b35, #ff9500); box-shadow: 0 0 18px rgba(255,107,53,0.5); }
+.q-number-badge.round2 { background: linear-gradient(135deg, #00b894, #00cec9); box-shadow: 0 0 18px rgba(0,184,148,0.5); }
 .q-round-label {
-  font-size: clamp(11px, 1.3vw, 16px);
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  font-size: clamp(11px, 1.3vw, 16px); font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.45);
 }
-
-.q-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: start;
-  min-height: 0;
-}
-
-.q-left {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: 100%;
-}
-
-.q-text {
-  font-size: clamp(20px, 3.2vw, 46px);
-  font-weight: 800;
-  line-height: 1.25;
-  color: #fff;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-}
-
-.answers-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  flex: 1;
-}
-.answers-grid.two-opts {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-}
+.q-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; min-height: 0; }
+.q-left { display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.q-text { font-size: clamp(20px, 3.2vw, 46px); font-weight: 800; line-height: 1.25; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+.answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+.answers-grid.two-opts { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
 
 .answer-box {
-  border-radius: 14px;
-  padding: 14px 16px;
-  font-size: clamp(14px, 1.8vw, 24px);
-  font-weight: 700;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  backdrop-filter: blur(6px);
-  border: 2px solid;
-  min-height: 66px;
-  position: relative;
-  transition: transform 0.2s;
+  border-radius: 14px; padding: 14px 16px;
+  font-size: clamp(14px, 1.8vw, 24px); font-weight: 700; color: #fff;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(6px); border: 2px solid;
+  min-height: 66px; position: relative; transition: transform 0.2s;
 }
 .answer-box.opt-a { background: rgba(255,107,107,0.18); border-color: rgba(255,107,107,0.6); }
 .answer-box.opt-b { background: rgba(78,205,196,0.18);  border-color: rgba(78,205,196,0.6); }
 .answer-box.opt-c { background: rgba(255,230,109,0.18); border-color: rgba(255,230,109,0.6); color: #ffe; }
 .answer-box.opt-d { background: rgba(168,230,207,0.18); border-color: rgba(168,230,207,0.6); }
-
 .answer-letter {
-  display: inline-flex;
-  align-items: center; justify-content: center;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.35);
-  font-weight: 900;
-  font-size: 0.9em;
-  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0,0,0,0.35); font-weight: 900; font-size: 0.9em; flex-shrink: 0;
 }
 
 /* ============================================================
    IMAGE PANEL
    ============================================================ */
 .q-image-panel {
-  border-radius: 18px;
-  overflow: hidden;
+  border-radius: 18px; overflow: hidden;
   border: 2px solid rgba(0,200,255,0.3);
   box-shadow: 0 0 40px rgba(0,150,255,0.2);
-  background: rgba(0,30,70,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: calc(100vh - 200px);
-  min-height: 240px;
+  background: linear-gradient(135deg, rgba(0,30,70,0.8), rgba(0,60,120,0.5));
+  display: flex; align-items: center; justify-content: center;
+  max-height: calc(100vh - 200px); min-height: 240px;
 }
-
 .q-image-panel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  min-height: 240px;
-  max-height: calc(100vh - 200px);
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  min-height: 240px; max-height: calc(100vh - 200px);
 }
+.img-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; padding: 30px; text-align: center;
+  min-height: 200px; width: 100%;
+  font-size: 54px;
+}
+.img-placeholder .img-ph-label { font-size: clamp(14px,1.6vw,20px); color: rgba(100,200,255,0.6); font-weight: 600; }
+.img-placeholder .img-ph-note { font-size: 12px; color: rgba(100,200,255,0.35); }
 
-/* Whale silhouette for Q7 question */
 .silhouette-wrap {
-  width: 100%;
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 14px;
+  width: 100%; padding: 30px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 14px;
 }
-.silhouette-label {
-  font-size: clamp(13px,1.5vw,18px);
-  color: rgba(100,200,255,0.6);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
+.silhouette-label { font-size: clamp(13px,1.5vw,18px); color: rgba(100,200,255,0.6); letter-spacing: 3px; text-transform: uppercase; }
 
-.q-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 11px;
-  color: rgba(255,255,255,0.2);
-  padding-bottom: 4px;
-}
+.q-footer { display: flex; justify-content: center; align-items: center; font-size: 11px; color: rgba(255,255,255,0.2); padding-bottom: 4px; }
 
 /* ============================================================
    SLIDE: TRANSITION
    ============================================================ */
 .transition-slide { gap: 16px; text-align: center; }
-.transition-big {
-  font-size: clamp(38px, 7vw, 90px);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  animation: transFlash 0.6s ease;
-}
-@keyframes transFlash {
-  0%   { opacity:0; transform: scale(0.6) rotate(-3deg); }
-  60%  { transform: scale(1.08) rotate(1deg); }
-  100% { opacity:1; transform: scale(1) rotate(0); }
-}
-.transition-big.purple {
-  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(168,85,247,0.5));
-}
-.transition-big.gold {
-  background: linear-gradient(135deg, #ffd700, #ff9500, #ff6b35);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(255,215,0,0.5));
-}
-.transition-big.teal {
-  background: linear-gradient(135deg, #00ffcc, #00d4ff, #0099ff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(0,212,255,0.5));
-}
-.transition-sub {
-  font-size: clamp(16px,2.5vw,32px);
-  color: rgba(200,230,255,0.8);
-  font-weight: 600;
-}
-.transition-icon {
-  font-size: clamp(60px, 10vw, 120px);
-  animation: iconBounce 1s ease-in-out infinite;
-}
-@keyframes iconBounce {
-  0%,100% { transform: translateY(0) scale(1); }
-  50%      { transform: translateY(-15px) scale(1.1); }
-}
-.transition-note {
-  font-size: clamp(13px,1.8vw,22px);
-  color: rgba(255,255,255,0.45);
-  margin-top: 10px;
-}
+.transition-big { font-size: clamp(38px, 7vw, 90px); font-weight: 900; text-transform: uppercase; letter-spacing: 3px; animation: transFlash 0.6s ease; }
+@keyframes transFlash { 0% { opacity:0; transform: scale(0.6) rotate(-3deg); } 60% { transform: scale(1.08) rotate(1deg); } 100% { opacity:1; transform: scale(1) rotate(0); } }
+.transition-big.purple { background: linear-gradient(135deg, #a855f7, #ec4899, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(168,85,247,0.5)); }
+.transition-big.gold   { background: linear-gradient(135deg, #ffd700, #ff9500, #ff6b35); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(255,215,0,0.5)); }
+.transition-big.teal   { background: linear-gradient(135deg, #00ffcc, #00d4ff, #0099ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(0,212,255,0.5)); }
+.transition-sub  { font-size: clamp(16px,2.5vw,32px); color: rgba(200,230,255,0.8); font-weight: 600; }
+.transition-icon { font-size: clamp(60px, 10vw, 120px); animation: iconBounce 1s ease-in-out infinite; }
+@keyframes iconBounce { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.1); } }
+.transition-note { font-size: clamp(13px,1.8vw,22px); color: rgba(255,255,255,0.45); margin-top: 10px; }
 
 /* ============================================================
-   SLIDE: REVEAL ANIMATIONS (wrong/correct)
+   SLIDE: REVEAL ANIMATIONS
    ============================================================ */
-.answer-box.wrong {
-  /* Base styling — nothing until JS fires animations */
-}
-
-/* Shake before flying away */
 @keyframes preShake {
   0%,100% { transform: translateX(0) rotate(0deg); }
-  15%      { transform: translateX(-8px) rotate(-2deg); }
-  30%      { transform: translateX(8px)  rotate(2deg); }
-  45%      { transform: translateX(-6px) rotate(-1deg); }
-  60%      { transform: translateX(6px)  rotate(1deg); }
-  75%      { transform: translateX(-4px); }
-  90%      { transform: translateX(4px); }
+  15% { transform: translateX(-8px) rotate(-2deg); }
+  30% { transform: translateX(8px)  rotate(2deg); }
+  45% { transform: translateX(-6px) rotate(-1deg); }
+  60% { transform: translateX(6px)  rotate(1deg); }
+  75% { transform: translateX(-4px); }
+  90% { transform: translateX(4px); }
 }
+@keyframes flyLeft   { 0% { transform: translateX(0) rotate(0) scale(1); opacity:1; } 100% { transform: translateX(-180vw) rotate(-40deg) scale(0.3); opacity:0; } }
+@keyframes flyRight  { 0% { transform: translateX(0) rotate(0) scale(1); opacity:1; } 100% { transform: translateX(180vw) rotate(40deg) scale(0.3); opacity:0; } }
+@keyframes sinkDown  { 0% { transform: translateY(0) rotate(0) scale(1); opacity:1; } 100% { transform: translateY(150vh) rotate(20deg) scale(0.5); opacity:0; } }
+@keyframes explodeOut { 0% { transform: scale(1) rotate(0); opacity:1; filter:blur(0); } 40% { transform: scale(1.4) rotate(5deg); opacity:0.8; } 100% { transform: scale(0) rotate(180deg); opacity:0; filter:blur(10px); } }
+@keyframes dissolveUp { 0% { transform: translateY(0) scale(1); opacity:1; filter:blur(0); } 100% { transform: translateY(-80px) scale(0.8); opacity:0; filter:blur(12px); } }
 
-/* Exit animations for wrong answers */
-@keyframes flyLeft {
-  0%   { transform: translateX(0)     rotate(0deg)   scale(1);   opacity: 1; }
-  100% { transform: translateX(-180vw) rotate(-40deg) scale(0.3); opacity: 0; }
-}
-@keyframes flyRight {
-  0%   { transform: translateX(0)    rotate(0deg) scale(1);   opacity: 1; }
-  100% { transform: translateX(180vw) rotate(40deg) scale(0.3); opacity: 0; }
-}
-@keyframes sinkDown {
-  0%   { transform: translateY(0)    rotate(0deg) scale(1); opacity: 1; }
-  100% { transform: translateY(150vh) rotate(20deg) scale(0.5); opacity: 0; }
-}
-@keyframes explodeOut {
-  0%   { transform: scale(1)   rotate(0deg); opacity: 1; filter: blur(0px); }
-  40%  { transform: scale(1.4) rotate(5deg); opacity: 0.8; }
-  100% { transform: scale(0)   rotate(180deg); opacity: 0; filter: blur(10px); }
-}
-@keyframes dissolveUp {
-  0%   { transform: translateY(0)   scale(1); opacity: 1; filter: blur(0); }
-  100% { transform: translateY(-80px) scale(0.8); opacity: 0; filter: blur(12px); }
-}
-
-.exit-fly-left  { animation: preShake 0.4s ease, flyLeft  0.7s ease 0.35s forwards !important; }
-.exit-fly-right { animation: preShake 0.4s ease, flyRight 0.7s ease 0.35s forwards !important; }
-.exit-sink      { animation: preShake 0.4s ease, sinkDown 0.7s ease 0.35s forwards !important; }
+.exit-fly-left  { animation: preShake 0.4s ease, flyLeft   0.7s ease 0.35s forwards !important; }
+.exit-fly-right { animation: preShake 0.4s ease, flyRight  0.7s ease 0.35s forwards !important; }
+.exit-sink      { animation: preShake 0.4s ease, sinkDown  0.7s ease 0.35s forwards !important; }
 .exit-explode   { animation: preShake 0.4s ease, explodeOut 0.7s ease 0.35s forwards !important; }
 .exit-dissolve  { animation: preShake 0.4s ease, dissolveUp 0.7s ease 0.35s forwards !important; }
 
-/* Correct answer reveal */
-@keyframes correctZoom {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.12); }
-  70%  { transform: scale(1.07); }
-  100% { transform: scale(1.06); }
-}
+@keyframes correctZoom { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 70% { transform: scale(1.07); } 100% { transform: scale(1.06); } }
 @keyframes correctGlow {
-  0%,100% {
-    box-shadow: 0 0 20px rgba(0,255,136,0.7), 0 0 50px rgba(0,255,136,0.3);
-    transform: scale(1.06);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(0,255,136,1), 0 0 90px rgba(0,255,136,0.5), 0 0 120px rgba(0,255,136,0.2);
-    transform: scale(1.09);
-  }
+  0%,100% { box-shadow: 0 0 20px rgba(0,255,136,0.7), 0 0 50px rgba(0,255,136,0.3); transform: scale(1.06); }
+  50%      { box-shadow: 0 0 40px rgba(0,255,136,1), 0 0 90px rgba(0,255,136,0.5), 0 0 120px rgba(0,255,136,0.2); transform: scale(1.09); }
 }
-
 .answer-box.revealed-correct {
-  border-color: #00ff88 !important;
-  background: rgba(0,255,136,0.2) !important;
-  color: #ccffe8 !important;
+  border-color: #00ff88 !important; background: rgba(0,255,136,0.2) !important; color: #ccffe8 !important;
   animation: correctZoom 0.5s ease forwards, correctGlow 1.8s ease 0.5s infinite !important;
 }
-
 .correct-check {
-  position: absolute; right: 12px; top: 50%;
-  transform: translateY(-50%) scale(0);
-  font-size: 1.4em;
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%) scale(0); font-size: 1.4em;
   animation: checkPop 0.4s ease 0.5s forwards;
 }
 @keyframes checkPop {
   0%   { transform: translateY(-50%) scale(0) rotate(-45deg); }
   70%  { transform: translateY(-50%) scale(1.3) rotate(5deg); }
-  100% { transform: translateY(-50%) scale(1)   rotate(0deg); }
+  100% { transform: translateY(-50%) scale(1) rotate(0deg); }
 }
-
-/* Reveal fact text */
 .reveal-fact {
-  margin-top: 8px;
-  padding: 10px 16px;
-  background: rgba(0,255,136,0.1);
-  border: 1px solid rgba(0,255,136,0.3);
-  border-radius: 10px;
-  font-size: clamp(12px, 1.5vw, 18px);
-  color: #aaffdd;
-  font-style: italic;
-  opacity: 0;
-  animation: factFadeIn 0.6s ease 3.5s forwards;
+  margin-top: 8px; padding: 10px 16px;
+  background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3);
+  border-radius: 10px; font-size: clamp(12px,1.5vw,18px); color: #aaffdd; font-style: italic;
+  opacity: 0; animation: factFadeIn 0.6s ease 3.5s forwards;
 }
-@keyframes factFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+@keyframes factFadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
 /* ============================================================
-   SLIDE: SCOREBOARD
+   SLIDE: INTERACTIVE SCOREBOARD
    ============================================================ */
-.scoreboard-slide { gap: 20px; text-align: center; }
-.scoreboard-trophy { font-size: clamp(60px,9vw,110px); animation: trophyBounce 1.2s ease-in-out infinite; }
-@keyframes trophyBounce {
-  0%,100% { transform: translateY(0) rotate(-5deg); }
-  50%      { transform: translateY(-18px) rotate(5deg); }
+.scoreboard-interactive {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 24px 80px;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 36px;
 }
+.scoreboard-trophy { font-size: clamp(44px,7vw,80px); animation: trophyBounce 1.2s ease-in-out infinite; }
+@keyframes trophyBounce { 0%,100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-14px) rotate(5deg); } }
 .scoreboard-title {
-  font-size: clamp(34px,5.5vw,72px);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-size: clamp(28px,4.5vw,60px); font-weight: 900; text-transform: uppercase; letter-spacing: 3px;
   background: linear-gradient(135deg, #ffd700, #ff8c00, #ff6b35);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   filter: drop-shadow(0 0 16px rgba(255,180,0,0.5));
 }
-.scoreboard-sub {
-  font-size: clamp(14px,2vw,24px);
-  color: rgba(255,255,255,0.6);
+.scoreboard-sub { font-size: clamp(13px,1.8vw,20px); color: rgba(255,255,255,0.6); }
+
+.score-rows {
+  width: min(680px, 92vw);
+  display: flex; flex-direction: column; gap: 9px;
 }
-.scoreboard-grid {
+.score-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  width: min(900px, 90vw);
-  margin-top: 10px;
+  grid-template-columns: 50px 1fr auto;
+  gap: 12px; align-items: center;
+  background: rgba(0,35,80,0.5);
+  border: 1px solid rgba(0,150,255,0.18);
+  border-radius: 14px; padding: 11px 18px;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
 }
-.scoreboard-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 16px;
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.score-row.leader {
+  background: rgba(0,70,10,0.45);
+  border-color: rgba(0,255,100,0.5);
+  box-shadow: 0 0 16px rgba(0,255,100,0.12);
 }
-.scoreboard-card .team-label {
-  font-size: clamp(12px,1.5vw,18px);
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.score-rank {
+  font-size: clamp(18px,2.2vw,28px);
+  font-weight: 900; text-align: center;
+  color: rgba(255,215,0,0.7);
+  min-width: 36px; line-height: 1;
 }
-.scoreboard-card .team-name {
-  font-size: clamp(18px,2.5vw,32px);
-  font-weight: 800;
-  color: #fff;
+.score-team-name { font-size: clamp(15px,2vw,26px); font-weight: 700; color: #fff; word-break: break-word; }
+.score-input-wrap { display: flex; align-items: center; gap: 8px; }
+.score-input {
+  background: rgba(0,0,50,0.5);
+  border: 2px solid rgba(0,180,255,0.38);
+  border-radius: 10px; color: #fff;
+  font-size: clamp(18px,2.6vw,32px);
+  font-weight: 900; font-family: inherit;
+  width: 76px; text-align: center;
+  padding: 5px 6px; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.scoreboard-card .score-line {
-  font-size: clamp(28px,4vw,52px);
-  font-weight: 900;
-  color: #ffd700;
-  line-height: 1;
+.score-input:focus { border-color: #00d4ff; box-shadow: 0 0 10px rgba(0,212,255,0.35); }
+.score-pts { font-size: clamp(11px,1.3vw,16px); color: rgba(255,215,0,0.55); font-weight: 600; }
+
+.winner-preview {
+  background: rgba(0,50,20,0.5);
+  border: 1px solid rgba(0,255,100,0.28);
+  border-radius: 14px; padding: 13px 24px;
+  font-size: clamp(13px,1.8vw,22px); font-weight: 700;
+  color: #aaffcc; text-align: center;
+  min-width: min(500px, 80vw);
+  transition: opacity 0.3s;
+  margin-top: 4px;
 }
-.scoreboard-card .score-suffix {
-  font-size: 0.5em;
-  color: rgba(255,215,0,0.6);
-}
-.scoreboard-note {
-  font-size: clamp(12px,1.5vw,18px);
-  color: rgba(255,255,255,0.35);
-  margin-top: 6px;
-}
+.leader-name-text { color: #00ff88; }
 
 /* ============================================================
-   SLIDE: FINALE
+   SLIDE: FINALE / WINNER
    ============================================================ */
 .finale-slide { gap: 14px; text-align: center; }
-.finale-emoji { font-size: clamp(60px,9vw,100px); animation: spinDrift 4s linear infinite; }
+.finale-emoji { font-size: clamp(54px,8vw,90px); animation: spinDrift 4s linear infinite; }
 @keyframes spinDrift {
   0%   { transform: rotate(0deg) translateY(0); }
   25%  { transform: rotate(5deg) translateY(-10px); }
@@ -630,37 +515,37 @@ html, body {
   75%  { transform: rotate(-5deg) translateY(-10px); }
   100% { transform: rotate(0deg) translateY(0); }
 }
+.winner-announce {
+  font-size: clamp(14px,2vw,22px);
+  color: rgba(200,230,255,0.8); font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+.winner-team-name {
+  font-size: clamp(28px,5.5vw,72px); font-weight: 900;
+  background: linear-gradient(135deg, #ffd700, #ff9500, #ffcc00);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(255,215,0,0.5));
+  animation: pulseWinner 1.5s ease-in-out infinite, fadeUp 0.8s ease 0.5s both;
+  text-align: center; line-height: 1.1; max-width: 80vw;
+}
+@keyframes pulseWinner {
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(255,215,0,0.4)); }
+  50%       { filter: drop-shadow(0 0 38px rgba(255,215,0,0.85)); }
+}
 .finale-main {
-  font-size: clamp(42px,8vw,100px);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-size: clamp(36px,7vw,90px); font-weight: 900; text-transform: uppercase; letter-spacing: 3px;
   background: linear-gradient(135deg, #ff6b35, #ffd700, #00ff88, #00d4ff, #aa00ff);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  background-size: 300%;
-  animation: rainbowShift 4s linear infinite;
+  background-size: 300%; animation: rainbowShift 4s linear infinite, fadeUp 0.8s ease 0.7s both;
 }
-@keyframes rainbowShift {
-  0%   { background-position: 0%   50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0%   50%; }
-}
-.finale-sub {
-  font-size: clamp(16px,2.5vw,32px);
-  color: rgba(200,230,255,0.8);
-  font-weight: 600;
-}
-.finale-credits {
-  font-size: clamp(12px,1.5vw,18px);
-  color: rgba(255,255,255,0.3);
-  margin-top: 20px;
-}
-.finale-credits a { color: rgba(100,200,255,0.5); }
+@keyframes rainbowShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.finale-sub { font-size: clamp(15px,2.3vw,30px); color: rgba(200,230,255,0.8); font-weight: 600; animation: fadeUp 0.8s ease 0.9s both; }
+.finale-credits { font-size: clamp(11px,1.4vw,17px); color: rgba(255,255,255,0.28); margin-top: 20px; animation: fadeUp 0.8s ease 1.1s both; }
 </style>
 </head>
 <body>
 
-<!-- Ocean background -->
 <div id="ocean-bg">
   <div class="wave-layer"></div>
   <div class="wave-layer"></div>
@@ -669,10 +554,8 @@ html, body {
 <div id="bubbles"></div>
 <canvas id="confetti-canvas"></canvas>
 
-<!-- Slideshow container -->
 <div id="slideshow"></div>
 
-<!-- Progress & navigation -->
 <div id="progress-bar"></div>
 <div id="nav-controls">
   <button class="nav-btn" onclick="changeSlide(-1)">← Back</button>
@@ -682,6 +565,38 @@ html, body {
 <button id="fs-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
 
 <script>
+// ============================================================
+// GLOBAL STATE
+// ============================================================
+let teamNames  = ['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'];
+let teamScores = {};   // { teamName: score }
+let winnerName = '';
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ============================================================
+// IMAGE FALLBACK HANDLER
+// ============================================================
+function tryNextImage(img) {
+  try {
+    const list = JSON.parse(img.dataset.fallbacks || '[]');
+    if (list.length > 0) {
+      img.dataset.fallbacks = JSON.stringify(list.slice(1));
+      img.src = list[0];
+    } else {
+      img.style.display = 'none';
+      const ph = document.createElement('div');
+      ph.className = 'img-placeholder';
+      ph.innerHTML = `<span>${img.dataset.emoji || '🐟'}</span>
+        <div class="img-ph-label">${escHtml(img.dataset.animal || 'Ocean Animal')}</div>
+        <div class="img-ph-note">Requires internet connection</div>`;
+      img.parentElement.appendChild(ph);
+    }
+  } catch(e) {}
+}
+
 // ============================================================
 // QUESTION DATA
 // ============================================================
@@ -695,9 +610,16 @@ const QUESTIONS = [
       { text: "5 meters",  correct: false },
       { text: "8 meters",  correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg/1024px-NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg/1024px-NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg",
-    imageCredit: "© Paul Nicklen / Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/b/b0/NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg/800px-NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/b/b0/NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg/800px-NARWHAL_%28Monodon_monoceros%29_%284477119762%29.jpg",
+    ],
+    animalName: 'Narwhal', emoji: '🦄',
+    imageCredit: "NOAA / Wikimedia Commons (Public Domain)",
     fact: "A narwhal's tusk is actually a long spiral tooth — the left canine — and can grow up to 3 m (10 ft)!",
   },
   {
@@ -709,9 +631,16 @@ const QUESTIONS = [
       { text: "Arctic / cold waters",    correct: true  },
       { text: "Warm Mediterranean seas", correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/1024px-Killerwhales_jumping.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/1024px-Killerwhales_jumping.jpg",
-    imageCredit: "© Robert Pittman / Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/3/37/Killerwhales_jumping.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/800px-Killerwhales_jumping.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/3/37/Killerwhales_jumping.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/800px-Killerwhales_jumping.jpg",
+    ],
+    animalName: 'Orca', emoji: '🐋',
+    imageCredit: "© Robert Pittman / NOAA — Wikimedia Commons (Public Domain)",
     fact: "Orcas (killer whales) thrive in cold, Arctic and Antarctic waters — though they're found worldwide!",
   },
   {
@@ -721,9 +650,16 @@ const QUESTIONS = [
       { text: "TRUE",  correct: false },
       { text: "FALSE", correct: true  },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Giant_squid_melville_big.jpg/800px-Giant_squid_melville_big.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Giant_squid_melville_big.jpg/800px-Giant_squid_melville_big.jpg",
-    imageCredit: "© Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/Giant_squid_melville_big.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Giant_squid_melville_big.jpg/640px-Giant_squid_melville_big.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/Giant_squid_melville_big.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Giant_squid_melville_big.jpg/640px-Giant_squid_melville_big.jpg",
+    ],
+    animalName: 'Giant Squid', emoji: '🦑',
+    imageCredit: "Wikimedia Commons (Public Domain)",
     fact: "FALSE! The colossal squid (up to 750 kg / 1650 lbs) is heavier than the giant squid (up to 275 kg).",
     twoOptions: true,
   },
@@ -731,14 +667,21 @@ const QUESTIONS = [
     id: 4,
     question: "What is a basking shark's nickname?",
     answers: [
-      { text: "Sunfish",       correct: false },
-      { text: "Gentle giant",  correct: false },
-      { text: "Bone shark",    correct: true  },
-      { text: "Sailback shark",correct: false },
+      { text: "Sunfish",        correct: false },
+      { text: "Gentle giant",   correct: false },
+      { text: "Bone shark",     correct: true  },
+      { text: "Sailback shark", correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Cetorhinus_maximus_by_greg_skomal.JPG/1024px-Cetorhinus_maximus_by_greg_skomal.JPG",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Cetorhinus_maximus_by_greg_skomal.JPG/1024px-Cetorhinus_maximus_by_greg_skomal.JPG",
-    imageCredit: "© Greg Skomal / Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/d/de/Cetorhinus_maximus_by_greg_skomal.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Cetorhinus_maximus_by_greg_skomal.JPG/800px-Cetorhinus_maximus_by_greg_skomal.JPG",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/d/de/Cetorhinus_maximus_by_greg_skomal.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Cetorhinus_maximus_by_greg_skomal.JPG/800px-Cetorhinus_maximus_by_greg_skomal.JPG",
+    ],
+    animalName: 'Basking Shark', emoji: '🦈',
+    imageCredit: "© Greg Skomal / NOAA — Wikimedia Commons (CC BY-SA)",
     fact: "The basking shark's nickname 'bone shark' comes from its large, bony gill rakers used to filter plankton!",
   },
   {
@@ -748,9 +691,16 @@ const QUESTIONS = [
       { text: "TRUE",  correct: false },
       { text: "FALSE", correct: true  },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Jelly_cc11.jpg/800px-Jelly_cc11.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Jelly_cc11.jpg/800px-Jelly_cc11.jpg",
-    imageCredit: "© Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/0/04/Jelly_cc11.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Jelly_cc11.jpg/640px-Jelly_cc11.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/0/04/Jelly_cc11.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Jelly_cc11.jpg/640px-Jelly_cc11.jpg",
+    ],
+    animalName: 'Jellyfish', emoji: '🪼',
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     fact: "FALSE! A jellyfish is not a fish at all — it's a free-swimming marine animal with no bones, brain, or heart!",
     twoOptions: true,
   },
@@ -761,27 +711,37 @@ const QUESTIONS = [
       { text: "The freshwater shark", correct: false },
       { text: "The blood fish",       correct: false },
       { text: "The river tiger",      correct: true  },
-      { text: "The jungle piranha",   correct: false },
+      { text: "The jungle snapper",   correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Serrasalmus_rhombeus1.jpg/1024px-Serrasalmus_rhombeus1.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Serrasalmus_rhombeus1.jpg/1024px-Serrasalmus_rhombeus1.jpg",
-    imageCredit: "© Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/2/2a/Serrasalmus_rhombeus1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Serrasalmus_rhombeus1.jpg/800px-Serrasalmus_rhombeus1.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/2/2a/Serrasalmus_rhombeus1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Serrasalmus_rhombeus1.jpg/800px-Serrasalmus_rhombeus1.jpg",
+    ],
+    animalName: 'Piranha', emoji: '🐟',
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     fact: "'The river tiger' — piranha means 'fish with teeth' in Tupi language, and they are ferocious river hunters!",
   },
   {
     id: 7,
     question: "What is the smallest type of whale?",
     answers: [
-      { text: "Dwarf sperm whale",  correct: false },
-      { text: "Pygmy right whale",  correct: false },
-      { text: "Dolphin",           correct: true  },
-      { text: "Minke whale",        correct: false },
+      { text: "Dwarf sperm whale", correct: false },
+      { text: "Pygmy right whale", correct: false },
+      { text: "Dolphin",          correct: true  },
+      { text: "Minke whale",      correct: false },
     ],
-    // Question shows silhouette — see 'silhouette' flag
-    questionImage: null,
+    questionImages: null,
     silhouette: true,
-    revealImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/1024px-Tursiops_truncatus_01.jpg",
-    imageCredit: "© Wikimedia Commons",
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/1/10/Tursiops_truncatus_01.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/800px-Tursiops_truncatus_01.jpg",
+    ],
+    animalName: 'Bottlenose Dolphin', emoji: '🐬',
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     fact: "Dolphins belong to the order Cetacea (whales), making them the smallest members of the whale family!",
   },
   {
@@ -793,9 +753,16 @@ const QUESTIONS = [
       { text: "30 feet", correct: true  },
       { text: "50 feet", correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Manta_birostris-Thailand4.jpg/1024px-Manta_birostris-Thailand4.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Manta_birostris-Thailand4.jpg/1024px-Manta_birostris-Thailand4.jpg",
-    imageCredit: "© Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/2/22/Manta_birostris-Thailand4.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Manta_birostris-Thailand4.jpg/800px-Manta_birostris-Thailand4.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/2/22/Manta_birostris-Thailand4.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Manta_birostris-Thailand4.jpg/800px-Manta_birostris-Thailand4.jpg",
+    ],
+    animalName: 'Manta Ray', emoji: '🐟',
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     fact: "The giant oceanic manta ray can reach 7–9 meters (up to 29.5 ft) — nearly 30 feet — wingspan!",
   },
   {
@@ -807,9 +774,16 @@ const QUESTIONS = [
       { text: "Mississippi River", correct: false },
       { text: "Yangtze River",     correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arapaima.jpg/1024px-Arapaima.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arapaima.jpg/1024px-Arapaima.jpg",
-    imageCredit: "© Wikimedia Commons",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/b/be/Arapaima.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arapaima.jpg/640px-Arapaima.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/b/be/Arapaima.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arapaima.jpg/640px-Arapaima.jpg",
+    ],
+    animalName: 'Arapaima', emoji: '🐟',
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     fact: "The arapaima lives in the Amazon River basin — it can grow over 3 meters long and breathes air!",
   },
   {
@@ -819,10 +793,17 @@ const QUESTIONS = [
       { text: "YES", correct: true  },
       { text: "NO",  correct: false },
     ],
-    questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Alepisaurus_ferox.jpg/1024px-Alepisaurus_ferox.jpg",
-    revealImage:   "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Alepisaurus_ferox.jpg/1024px-Alepisaurus_ferox.jpg",
-    imageCredit: "© Wikimedia Commons",
-    fact: "YES! The longnose lancetfish has a large dorsal fin sail — just like a sailfish — earning its striking nickname!",
+    questionImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/6/62/Alepisaurus_ferox.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Alepisaurus_ferox.jpg/800px-Alepisaurus_ferox.jpg",
+    ],
+    revealImages: [
+      "https://upload.wikimedia.org/wikipedia/commons/6/62/Alepisaurus_ferox.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Alepisaurus_ferox.jpg/800px-Alepisaurus_ferox.jpg",
+    ],
+    animalName: 'Longnose Lancetfish', emoji: '🐠',
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
+    fact: "YES! The longnose lancetfish has a huge dorsal fin sail — just like a sailfish — giving it a striking silhouette!",
     twoOptions: true,
   },
 ];
@@ -832,44 +813,36 @@ const QUESTIONS = [
 // ============================================================
 const SLIDES = [];
 
-// 0 — Intro
-SLIDES.push({ type: 'intro' });
+SLIDES.push({ type: 'teamreg' });        // 0 — Team Registration
+SLIDES.push({ type: 'intro' });          // 1 — Intro title
 
-// 1–10 — Round 1 questions
-for (const q of QUESTIONS) {
+for (const q of QUESTIONS) {            // 2–11 — Round 1 questions
   SLIDES.push({ type: 'question', q, round: 1 });
 }
 
-// 11 — Get ready transition
-SLIDES.push({
-  type: 'transition',
-  icon: '🌊',
-  bigText: 'GET READY FOR THE ANSWERS!',
-  bigClass: 'purple',
-  sub: 'Pencils down — let\'s see how your team did!',
+SLIDES.push({                            // 12 — Transition
+  type: 'transition', icon: '🌊',
+  bigText: 'GET READY FOR THE ANSWERS!', bigClass: 'purple',
+  sub: "Pencils down — let's see how your team did!",
   note: 'The host will now reveal the correct answers one by one.',
 });
 
-// 12–21 — Round 2 reveals
-for (const q of QUESTIONS) {
+for (const q of QUESTIONS) {            // 13–22 — Round 2 reveals
   SLIDES.push({ type: 'reveal', q, round: 2 });
 }
 
-// 22 — Scoreboard
-SLIDES.push({ type: 'scoreboard' });
-
-// 23 — Finale
-SLIDES.push({ type: 'finale' });
+SLIDES.push({ type: 'scoreboard' });    // 23 — Live Leaderboard
+SLIDES.push({ type: 'finale' });        // 24 — Winner + Finale
 
 // ============================================================
-// SLIDE RENDERER
+// SLIDE RENDERERS
 // ============================================================
 function renderSlide(slide) {
   const el = document.createElement('div');
   el.className = 'slide';
   el.dataset.type = slide.type;
-
   switch (slide.type) {
+    case 'teamreg':    el.innerHTML = renderTeamRegistration(); break;
     case 'intro':      el.innerHTML = renderIntro();    break;
     case 'question':   el.innerHTML = renderQuestion(slide.q, slide.round, false); break;
     case 'reveal':     el.innerHTML = renderQuestion(slide.q, slide.round, true);  break;
@@ -880,9 +853,63 @@ function renderSlide(slide) {
   return el;
 }
 
+// ── Team Registration ──────────────────────────────────────
+function renderTeamRegistration() {
+  const defaultNames = ['Team Shark','Team Orca','Team Manta','Team Narwhal','Team Squid','Team Ray'];
+  const rows = defaultNames.map((name, i) => `
+    <div class="team-input-row">
+      <div class="team-input-number">${i + 1}</div>
+      <input type="text" class="team-name-input" placeholder="${escHtml(name)}" value="${escHtml(name)}" maxlength="28">
+      <button class="remove-team-btn" onclick="removeTeamRow(this)" title="Remove">×</button>
+    </div>`).join('');
+
+  return `
+  <div class="teamreg-slide">
+    <div class="teamreg-title">🌊 Register Your Teams 🌊</div>
+    <div class="teamreg-sub">Enter each team's name below — then start the show!</div>
+    <div class="team-inputs-grid" id="team-inputs-grid">${rows}</div>
+    <div class="teamreg-actions">
+      <button class="ocean-btn secondary" onclick="addTeamInput()">+ Add Team</button>
+      <button class="ocean-btn primary" onclick="saveTeamsAndStart()">Start the Show! →</button>
+    </div>
+    <div class="teamreg-skip">Or press → / Next to skip team setup</div>
+  </div>`;
+}
+
+function saveTeamsAndStart() {
+  const inputs = document.querySelectorAll('#team-inputs-grid .team-name-input');
+  const names = [];
+  inputs.forEach(inp => {
+    const n = inp.value.trim();
+    if (n) names.push(n);
+  });
+  teamNames = names.length > 0 ? names : ['Team 1'];
+  changeSlide(1);
+}
+
+function addTeamInput() {
+  const grid = document.getElementById('team-inputs-grid');
+  if (!grid) return;
+  const num = grid.querySelectorAll('.team-input-row').length + 1;
+  const row = document.createElement('div');
+  row.className = 'team-input-row';
+  row.innerHTML = `
+    <div class="team-input-number">${num}</div>
+    <input type="text" class="team-name-input" placeholder="Team ${num}" maxlength="28">
+    <button class="remove-team-btn" onclick="removeTeamRow(this)" title="Remove">×</button>`;
+  grid.appendChild(row);
+}
+
+function removeTeamRow(btn) {
+  btn.closest('.team-input-row').remove();
+  const grid = document.getElementById('team-inputs-grid');
+  if (grid) grid.querySelectorAll('.team-input-number').forEach((el, i) => { el.textContent = i + 1; });
+}
+
+// ── Intro ──────────────────────────────────────────────────
 function renderIntro() {
   return `
-  <div class="intro-slide" style="text-align:center; gap:8px; display:flex; flex-direction:column; align-items:center;">
+  <div style="text-align:center;gap:8px;display:flex;flex-direction:column;align-items:center;">
     <div class="intro-title-top">🌊 &nbsp; A Live Game Show &nbsp; 🌊</div>
     <div class="intro-main-title">Ocean<br>Trivia</div>
     <div class="intro-subtitle">The Deep Sea Challenge</div>
@@ -895,6 +922,7 @@ function renderIntro() {
   </div>`;
 }
 
+// ── Transition ─────────────────────────────────────────────
 function renderTransition(slide) {
   return `
   <div class="transition-slide">
@@ -905,83 +933,66 @@ function renderTransition(slide) {
   </div>`;
 }
 
+// ── Question / Reveal ──────────────────────────────────────
 function renderQuestion(q, round, isReveal) {
-  const opts = ['a','b','c','d'];
+  const opts  = ['a','b','c','d'];
   const exits = ['exit-fly-left','exit-fly-right','exit-sink','exit-explode','exit-dissolve'];
   let wrongIdx = 0;
 
   const answerBoxes = q.answers.map((ans, i) => {
-    const optClass = `opt-${opts[i]}`;
-    const letter = String.fromCharCode(65 + i); // A, B, C, D
-    let extraClasses = '';
-    let inner = '';
-    let checkmark = '';
-
+    let extraClasses = '', checkmark = '';
     if (isReveal) {
       if (ans.correct) {
         extraClasses = 'correct-answer';
         checkmark = `<span class="correct-check">✅</span>`;
       } else {
-        const exitAnim = exits[wrongIdx % exits.length];
+        extraClasses = `wrong-answer ${exits[wrongIdx % exits.length]}`;
         wrongIdx++;
-        extraClasses = `wrong-answer ${exitAnim}`;
       }
     }
-
-    return `<div class="answer-box ${optClass} ${extraClasses}" data-correct="${ans.correct}">
-      <span class="answer-letter">${letter}</span>
-      <span>${ans.text}</span>
-      ${checkmark}
+    return `<div class="answer-box opt-${opts[i]} ${extraClasses}" data-correct="${ans.correct}">
+      <span class="answer-letter">${String.fromCharCode(65 + i)}</span>
+      <span>${ans.text}</span>${checkmark}
     </div>`;
   }).join('');
 
-  const gridClass = q.twoOptions ? 'two-opts' : '';
+  const imgUrls = isReveal ? q.revealImages : q.questionImages;
 
-  // Image panel
   let imagePanel = '';
-  if (isReveal) {
-    // Always show real photo on reveal
-    imagePanel = `<div class="q-image-panel">
-      <img src="${q.revealImage}" alt="${q.question}" loading="eager"
-        onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'padding:30px;text-align:center;color:rgba(100,200,255,0.5);font-size:18px;\'>🐟<br><small>Image loading…</small></div>'">
-    </div>`;
-  } else if (q.silhouette) {
+  if (q.silhouette && !isReveal) {
     imagePanel = `<div class="q-image-panel">
       <div class="silhouette-wrap">
         <svg viewBox="0 0 400 200" width="100%" xmlns="http://www.w3.org/2000/svg">
-          <!-- Generic whale silhouette -->
           <g fill="rgba(0,150,220,0.25)" stroke="rgba(0,200,255,0.4)" stroke-width="2">
-            <!-- Body -->
             <ellipse cx="200" cy="105" rx="160" ry="55"/>
-            <!-- Tail fluke -->
             <path d="M360,105 Q390,70 400,50 Q380,85 360,95 Q380,115 400,160 Q390,130 360,105" fill="rgba(0,130,200,0.3)"/>
-            <!-- Dorsal fin -->
             <path d="M220,50 Q240,20 260,50" fill="rgba(0,150,220,0.35)" stroke="rgba(0,200,255,0.5)"/>
-            <!-- Flippers -->
             <path d="M160,120 Q130,150 120,170 Q150,145 180,135" fill="rgba(0,130,200,0.3)"/>
-            <!-- Eye -->
             <circle cx="100" cy="95" r="6" fill="rgba(0,200,255,0.5)" stroke="rgba(0,220,255,0.7)" stroke-width="1.5"/>
-            <!-- Smile hint -->
             <path d="M68,105 Q80,112 95,108" fill="none" stroke="rgba(0,200,255,0.4)" stroke-width="2"/>
           </g>
         </svg>
         <div class="silhouette-label">🔍 Mystery creature — can you guess?</div>
       </div>
     </div>`;
-  } else if (q.questionImage) {
+  } else if (imgUrls && imgUrls.length > 0) {
+    const fallbacks = JSON.stringify(imgUrls.slice(1));
     imagePanel = `<div class="q-image-panel">
-      <img src="${q.questionImage}" alt="${q.question}" loading="eager"
-        onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'padding:30px;text-align:center;color:rgba(100,200,255,0.5);font-size:18px;\'>🐟<br><small>Image loading…</small></div>'">
+      <img src="${imgUrls[0]}"
+           data-fallbacks='${fallbacks}'
+           data-animal="${escHtml(q.animalName)}"
+           data-emoji="${q.emoji}"
+           alt="${escHtml(q.animalName)}"
+           loading="eager"
+           onerror="tryNextImage(this)">
     </div>`;
   }
 
   const badgeClass = round === 1 ? 'round1' : 'round2';
   const badgeText  = round === 1 ? `Question ${q.id} of 10` : `Answer Reveal ${q.id} of 10`;
   const roundLabel = round === 1 ? 'Round 1 — Questions' : 'Round 2 — Reveals';
-
-  const factLine = isReveal
-    ? `<div class="reveal-fact">💡 ${q.fact}</div>`
-    : '';
+  const factLine   = isReveal ? `<div class="reveal-fact">💡 ${q.fact}</div>` : '';
+  const gridClass  = q.twoOptions ? 'two-opts' : '';
 
   return `
   <div class="question-slide" style="display:grid;grid-template-rows:auto 1fr auto;gap:12px;width:100%;height:100%;padding:14px 28px 60px;">
@@ -1001,43 +1012,122 @@ function renderQuestion(q, round, isReveal) {
   </div>`;
 }
 
+// ── Interactive Scoreboard ─────────────────────────────────
 function renderScoreboard() {
-  const teams = [
-    { name: 'Team Shark',  score: '___' },
-    { name: 'Team Orca',   score: '___' },
-    { name: 'Team Manta',  score: '___' },
-    { name: 'Team Narwhal',score: '___' },
-    { name: 'Team Squid',  score: '___' },
-    { name: 'Team Ray',    score: '___' },
-  ];
-  const cards = teams.map((t,i) => `
-    <div class="scoreboard-card">
-      <div class="team-label">Team ${i+1}</div>
-      <div class="team-name">${t.name}</div>
-      <div class="score-line">${t.score} <span class="score-suffix">pts</span></div>
-    </div>`).join('');
+  const names = teamNames.length > 0 ? teamNames : ['Team 1','Team 2','Team 3'];
+  const rows = names.map((name, i) => {
+    const saved = (teamScores[name] !== undefined && teamScores[name] > 0) ? teamScores[name] : '';
+    return `
+    <div class="score-row" data-idx="${i}">
+      <div class="score-rank" id="score-rank-${i}">—</div>
+      <div class="score-team-name">${escHtml(name)}</div>
+      <div class="score-input-wrap">
+        <input type="number" class="score-input" min="0" max="100"
+               placeholder="0" id="score-val-${i}"
+               value="${escHtml(String(saved))}"
+               oninput="onScoreInput()">
+        <span class="score-pts">pts</span>
+      </div>
+    </div>`;
+  }).join('');
 
   return `
-  <div class="scoreboard-slide">
+  <div class="scoreboard-interactive">
     <div class="scoreboard-trophy">🏆</div>
-    <div class="scoreboard-title">Tally Your Scores!</div>
-    <div class="scoreboard-sub">Add up your team's correct answers — 1 point each</div>
-    <div class="scoreboard-grid">${cards}</div>
-    <div class="scoreboard-note">Maximum score: 10 points &nbsp;|&nbsp; Host: fill in your team names!</div>
+    <div class="scoreboard-title">Live Leaderboard</div>
+    <div class="scoreboard-sub">Type each team's score — rankings update instantly!</div>
+    <div class="score-rows" id="score-rows">${rows}</div>
+    <button class="ocean-btn secondary" onclick="addScoreTeam()" style="margin-top:6px;">+ Add Team</button>
+    <div class="winner-preview">
+      <span id="winner-preview-text">Enter scores above to see who is winning...</span>
+    </div>
   </div>`;
 }
 
+function onScoreInput() {
+  const allRows = document.querySelectorAll('#score-rows .score-row');
+  const data = [];
+
+  allRows.forEach((row, domIdx) => {
+    const inp    = row.querySelector('.score-input');
+    const nameEl = row.querySelector('.score-team-name');
+    const score  = parseInt(inp ? inp.value : '') || 0;
+    const name   = nameEl ? nameEl.textContent.trim() : `Team ${domIdx + 1}`;
+    const idx    = parseInt(row.dataset.idx);
+    data.push({ idx, domIdx, name, score });
+    teamScores[name] = score;
+  });
+
+  const scored = [...data].filter(d => d.score > 0).sort((a, b) => b.score - a.score);
+  const rankEmoji = ['🥇','🥈','🥉'];
+
+  data.forEach(d => {
+    const rankEl = document.getElementById(`score-rank-${d.idx}`);
+    const row    = allRows[d.domIdx];
+    const rank   = scored.findIndex(s => s.idx === d.idx);
+
+    if (rankEl) {
+      rankEl.textContent = rank >= 0 && rank < 3 ? rankEmoji[rank] : rank >= 0 ? `#${rank + 1}` : '—';
+    }
+    if (row) row.classList.toggle('leader', rank === 0 && d.score > 0);
+  });
+
+  const previewEl = document.getElementById('winner-preview-text');
+  if (!previewEl) return;
+
+  if (scored.length === 0) {
+    winnerName = '';
+    previewEl.textContent = 'Enter scores above to see who is winning...';
+    return;
+  }
+
+  const topScore = scored[0].score;
+  const tied = scored.filter(s => s.score === topScore);
+
+  if (tied.length > 1) {
+    winnerName = tied.map(t => t.name).join(' & ');
+    previewEl.innerHTML = `🤝 Tie! <span class="leader-name-text">${tied.map(t => escHtml(t.name)).join(' &amp; ')}</span> — ${topScore} pts each!`;
+  } else {
+    winnerName = scored[0].name;
+    previewEl.innerHTML = `🥇 <span class="leader-name-text">${escHtml(scored[0].name)}</span> leads with ${scored[0].score} pts!`;
+  }
+}
+
+function addScoreTeam() {
+  const rowsEl = document.getElementById('score-rows');
+  if (!rowsEl) return;
+  const newIdx  = rowsEl.querySelectorAll('.score-row').length;
+  const newName = `Extra Team ${newIdx + 1}`;
+  if (!teamNames.includes(newName)) teamNames.push(newName);
+
+  const row = document.createElement('div');
+  row.className = 'score-row';
+  row.dataset.idx = newIdx;
+  row.innerHTML = `
+    <div class="score-rank" id="score-rank-${newIdx}">—</div>
+    <div class="score-team-name" style="min-width:0">${escHtml(newName)}</div>
+    <div class="score-input-wrap">
+      <input type="number" class="score-input" min="0" max="100"
+             placeholder="0" id="score-val-${newIdx}"
+             oninput="onScoreInput()">
+      <span class="score-pts">pts</span>
+    </div>`;
+  rowsEl.appendChild(row);
+}
+
+// ── Finale / Winner ────────────────────────────────────────
 function renderFinale() {
+  const w = winnerName ? winnerName.trim() : '';
   return `
   <div class="finale-slide">
-    <div class="finale-emoji">🌊🐬🌊</div>
-    <div class="finale-main">Thanks for Playing!</div>
-    <div class="finale-sub">You are now an Ocean Trivia Champion 🏆</div>
+    <div class="finale-emoji">🌊🏆🌊</div>
+    ${w ? `<div class="winner-announce">And the winner is…</div>
+           <div class="winner-team-name">${escHtml(w)}</div>` : ''}
+    <div class="finale-main">${w ? 'Congratulations!' : 'Thanks for Playing!'}</div>
+    <div class="finale-sub">${w ? escHtml(w) + ' are the Ocean Trivia Champions! 🏆' : 'You are now an Ocean Trivia Champion! 🏆'}</div>
     <div class="intro-divider" style="margin-top:20px;"></div>
     <div class="finale-credits">
-      Images: Wikimedia Commons (CC BY-SA) &nbsp;|&nbsp;
-      Questions: Ocean Trivia Live Game Show &nbsp;|&nbsp;
-      Presented with 💙 by your host
+      Images: Wikimedia Commons &nbsp;|&nbsp; Ocean Trivia Live Game Show &nbsp;|&nbsp; Presented with 💙 by your host
     </div>
   </div>`;
 }
@@ -1046,8 +1136,8 @@ function renderFinale() {
 // SLIDESHOW ENGINE
 // ============================================================
 let currentIndex = 0;
-let isAnimating = false;
-const slideDivs = [];
+let isAnimating  = false;
+const slideDivs  = [];
 
 function buildSlideshow() {
   const container = document.getElementById('slideshow');
@@ -1061,7 +1151,6 @@ function buildSlideshow() {
 }
 
 function showSlide(index, direction) {
-  // direction: 1 = forward, -1 = backward, 0 = initial
   if (index < 0 || index >= slideDivs.length) return;
   if (isAnimating) return;
 
@@ -1071,14 +1160,9 @@ function showSlide(index, direction) {
   if (direction !== 0 && prevEl !== nextEl) {
     isAnimating = true;
     prevEl.classList.add(direction > 0 ? 'slide-leave' : 'slide-leave-back');
-    setTimeout(() => {
-      prevEl.classList.remove('active', 'slide-leave', 'slide-leave-back');
-    }, 430);
+    setTimeout(() => { prevEl.classList.remove('active','slide-leave','slide-leave-back'); }, 430);
     nextEl.classList.add('active', direction > 0 ? 'slide-enter' : 'slide-enter-back');
-    setTimeout(() => {
-      nextEl.classList.remove('slide-enter', 'slide-enter-back');
-      isAnimating = false;
-    }, 450);
+    setTimeout(() => { nextEl.classList.remove('slide-enter','slide-enter-back'); isAnimating = false; }, 450);
   } else {
     prevEl && prevEl.classList.remove('active');
     nextEl.classList.add('active');
@@ -1092,18 +1176,28 @@ function showSlide(index, direction) {
 function changeSlide(dir) {
   const next = currentIndex + dir;
   if (next < 0 || next >= SLIDES.length) return;
+
+  // Auto-save teams when navigating away from team reg slide
+  if (SLIDES[currentIndex].type === 'teamreg' && dir > 0) {
+    const inputs = document.querySelectorAll('#team-inputs-grid .team-name-input');
+    if (inputs.length > 0) {
+      const names = [];
+      inputs.forEach(inp => { const n = inp.value.trim(); if (n) names.push(n); });
+      if (names.length > 0) teamNames = names;
+    }
+  }
+
   showSlide(next, dir);
 }
 
 function updateUI() {
-  document.getElementById('slide-counter').textContent =
-    `${currentIndex + 1} / ${SLIDES.length}`;
-  const pct = ((currentIndex) / (SLIDES.length - 1)) * 100;
+  document.getElementById('slide-counter').textContent = `${currentIndex + 1} / ${SLIDES.length}`;
+  const pct = (currentIndex / (SLIDES.length - 1)) * 100;
   document.getElementById('progress-bar').style.width = pct + '%';
 }
 
 // ============================================================
-// SLIDE LIFECYCLE — animations triggered when slide becomes active
+// SLIDE LIFECYCLE
 // ============================================================
 let revealTimer = null;
 
@@ -1112,10 +1206,19 @@ function onSlideVisible(index) {
   stopConfetti();
 
   const slide = SLIDES[index];
+
   if (slide.type === 'reveal') {
     triggerRevealSequence(slideDivs[index], slide.q);
   }
+
+  if (slide.type === 'scoreboard') {
+    // Re-render with current team names; restored scores come from teamScores
+    slideDivs[index].innerHTML = renderScoreboard();
+    onScoreInput(); // re-apply rankings for any pre-filled values
+  }
+
   if (slide.type === 'finale') {
+    slideDivs[index].innerHTML = renderFinale();
     startConfetti(300, true);
   }
 }
@@ -1123,83 +1226,54 @@ function onSlideVisible(index) {
 function triggerRevealSequence(el, q) {
   const wrongBoxes = Array.from(el.querySelectorAll('.wrong-answer'));
   const correctBox = el.querySelector('.correct-answer');
+  const exits = ['exit-fly-left','exit-fly-right','exit-sink','exit-explode','exit-dissolve'];
 
-  // Remove existing animation classes so re-visiting replays
   wrongBoxes.forEach(b => {
-    const exits = ['exit-fly-left','exit-fly-right','exit-sink','exit-explode','exit-dissolve'];
     exits.forEach(c => b.classList.remove(c));
-    b.style.opacity = '1';
-    b.style.transform = '';
-    void b.offsetWidth; // force reflow
+    b.style.opacity = '1'; b.style.transform = '';
+    void b.offsetWidth;
   });
-  if (correctBox) {
-    correctBox.classList.remove('revealed-correct');
-    void correctBox.offsetWidth;
-  }
+  if (correctBox) { correctBox.classList.remove('revealed-correct'); void correctBox.offsetWidth; }
 
-  const DELAYS = [0, 700, 1400]; // stagger for up to 3 wrong answers
-
+  const DELAYS = [0, 700, 1400];
   wrongBoxes.forEach((box, i) => {
-    const exits = ['exit-fly-left','exit-fly-right','exit-sink','exit-explode','exit-dissolve'];
     revealTimer = setTimeout(() => {
-      // Force re-add class to replay animation
       exits.forEach(c => box.classList.remove(c));
       void box.offsetWidth;
-      const exitClass = exits[i % exits.length];
-      box.classList.add(exitClass);
+      box.classList.add(exits[i % exits.length]);
     }, 1000 + DELAYS[i]);
   });
 
-  // Correct answer glows
-  const correctDelay = 1000 + (wrongBoxes.length * 700) + 500;
+  const correctDelay = 1000 + wrongBoxes.length * 700 + 500;
   revealTimer = setTimeout(() => {
-    if (correctBox) {
-      correctBox.classList.add('revealed-correct');
-      createSparkles(correctBox);
-    }
+    if (correctBox) { correctBox.classList.add('revealed-correct'); createSparkles(correctBox); }
   }, correctDelay);
 
-  // Confetti
-  setTimeout(() => {
-    startConfetti(120, false);
-    setTimeout(stopConfetti, 4000);
-  }, correctDelay + 400);
+  setTimeout(() => { startConfetti(120, false); setTimeout(stopConfetti, 4000); }, correctDelay + 400);
 }
 
 // ============================================================
 // CONFETTI ENGINE
 // ============================================================
-const canvas  = document.getElementById('confetti-canvas');
-const ctx2d   = canvas.getContext('2d');
-let confettiPieces = [];
-let confettiRAF = null;
-let confettiRunning = false;
+const canvas = document.getElementById('confetti-canvas');
+const ctx2d  = canvas.getContext('2d');
+let confettiPieces = [], confettiRAF = null, confettiRunning = false;
 
-function resizeCanvas() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const CONFETTI_COLORS = [
-  '#ff6b6b','#ffd700','#00ff88','#00d4ff','#ff69b4',
-  '#7fff00','#ff8c00','#da70d6','#40e0d0','#ffb347',
-];
+const CONFETTI_COLORS = ['#ff6b6b','#ffd700','#00ff88','#00d4ff','#ff69b4','#7fff00','#ff8c00','#da70d6','#40e0d0','#ffb347'];
 
-function startConfetti(count, continuous) {
+function startConfetti(count) {
   confettiPieces = [];
   for (let i = 0; i < count; i++) {
     confettiPieces.push({
-      x: Math.random() * canvas.width,
-      y: -20 - Math.random() * 200,
-      w: 6 + Math.random() * 10,
-      h: 4 + Math.random() * 8,
+      x: Math.random() * canvas.width, y: -20 - Math.random() * 200,
+      w: 6 + Math.random() * 10, h: 4 + Math.random() * 8,
       color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-      rot: Math.random() * Math.PI * 2,
-      rotV: (Math.random() - 0.5) * 0.15,
-      vx: (Math.random() - 0.5) * 3,
-      vy: 2 + Math.random() * 4,
+      rot: Math.random() * Math.PI * 2, rotV: (Math.random() - 0.5) * 0.15,
+      vx: (Math.random() - 0.5) * 3, vy: 2 + Math.random() * 4,
       shape: Math.random() > 0.5 ? 'rect' : 'circle',
     });
   }
@@ -1207,121 +1281,62 @@ function startConfetti(count, continuous) {
   if (!confettiRAF) animateConfetti();
 }
 
-function stopConfetti() {
-  confettiRunning = false;
-}
+function stopConfetti() { confettiRunning = false; }
 
 function animateConfetti() {
   ctx2d.clearRect(0, 0, canvas.width, canvas.height);
   let alive = 0;
-
   for (const p of confettiPieces) {
     if (p.y > canvas.height + 20) continue;
-    alive++;
-    p.x  += p.vx;
-    p.y  += p.vy;
-    p.rot += p.rotV;
-    p.vy += 0.04; // gravity
-
-    ctx2d.save();
-    ctx2d.translate(p.x, p.y);
-    ctx2d.rotate(p.rot);
-    ctx2d.fillStyle = p.color;
-    ctx2d.globalAlpha = 0.85;
-    if (p.shape === 'circle') {
-      ctx2d.beginPath();
-      ctx2d.arc(0, 0, p.w / 2, 0, Math.PI * 2);
-      ctx2d.fill();
-    } else {
-      ctx2d.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-    }
+    alive++; p.x += p.vx; p.y += p.vy; p.rot += p.rotV; p.vy += 0.04;
+    ctx2d.save(); ctx2d.translate(p.x, p.y); ctx2d.rotate(p.rot);
+    ctx2d.fillStyle = p.color; ctx2d.globalAlpha = 0.85;
+    if (p.shape === 'circle') { ctx2d.beginPath(); ctx2d.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx2d.fill(); }
+    else { ctx2d.fillRect(-p.w/2, -p.h/2, p.w, p.h); }
     ctx2d.restore();
   }
-
-  if (alive > 0 || confettiRunning) {
-    confettiRAF = requestAnimationFrame(animateConfetti);
-  } else {
-    ctx2d.clearRect(0, 0, canvas.width, canvas.height);
-    confettiRAF = null;
-  }
+  if (alive > 0 || confettiRunning) { confettiRAF = requestAnimationFrame(animateConfetti); }
+  else { ctx2d.clearRect(0, 0, canvas.width, canvas.height); confettiRAF = null; }
 }
 
 // ============================================================
-// SPARKLE EFFECT on correct answer
+// SPARKLES
 // ============================================================
 function createSparkles(box) {
   const rect = box.getBoundingClientRect();
   const colors = ['#00ff88','#ffd700','#ffffff','#00d4ff'];
   for (let i = 0; i < 16; i++) {
     const sp = document.createElement('div');
-    sp.style.cssText = `
-      position:fixed;
-      left:${rect.left + rect.width/2}px;
-      top:${rect.top + rect.height/2}px;
-      width:8px; height:8px;
-      border-radius:50%;
-      background:${colors[i%colors.length]};
-      pointer-events:none;
-      z-index:950;
-    `;
     const angle = (i / 16) * Math.PI * 2;
     const dist  = 40 + Math.random() * 60;
-    const tx = Math.cos(angle) * dist;
-    const ty = Math.sin(angle) * dist;
-    sp.style.setProperty('--tx', tx + 'px');
-    sp.style.setProperty('--ty', ty + 'px');
-    sp.style.animation = `sparkle-burst 0.7s ease-out ${i * 0.03}s forwards`;
+    sp.style.cssText = `position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top+rect.height/2}px;width:8px;height:8px;border-radius:50%;background:${colors[i%colors.length]};pointer-events:none;z-index:950;--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist}px;animation:sparkle-burst 0.7s ease-out ${i*0.03}s forwards;`;
     document.body.appendChild(sp);
     setTimeout(() => sp.remove(), 800 + i * 30);
   }
 }
-
-// sparkle-burst keyframe (inline via style tag)
 const sparkleStyle = document.createElement('style');
-sparkleStyle.textContent = `
-@keyframes sparkle-burst {
-  0%   { transform: translate(0,0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--tx),var(--ty)) scale(0); opacity: 0; }
-}`;
+sparkleStyle.textContent = `@keyframes sparkle-burst{0%{transform:translate(0,0) scale(1);opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0;}}`;
 document.head.appendChild(sparkleStyle);
 
 // ============================================================
-// BUBBLE GENERATOR
+// BUBBLES & STARS
 // ============================================================
 function spawnBubbles() {
-  const container = document.getElementById('bubbles');
-  const count = 28;
-  for (let i = 0; i < count; i++) {
+  const c = document.getElementById('bubbles');
+  for (let i = 0; i < 28; i++) {
     const b = document.createElement('div');
     b.className = 'bubble';
-    const size = 6 + Math.random() * 22;
-    const left = Math.random() * 100;
-    const dur  = 8 + Math.random() * 18;
-    const delay = Math.random() * 20;
-    const drift = (Math.random() - 0.5) * 80;
-    b.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${left}%;
-      animation-duration:${dur}s;
-      animation-delay:-${delay}s;
-      --drift:${drift}px;
-    `;
-    container.appendChild(b);
+    const size = 6 + Math.random() * 22, left = Math.random() * 100;
+    b.style.cssText = `width:${size}px;height:${size}px;left:${left}%;animation-duration:${8+Math.random()*18}s;animation-delay:-${Math.random()*20}s;--drift:${(Math.random()-0.5)*80}px;`;
+    c.appendChild(b);
   }
 }
-
-// Star particles
 function spawnStars() {
   const bg = document.getElementById('ocean-bg');
   for (let i = 0; i < 60; i++) {
     const s = document.createElement('div');
     s.className = 'star-particle';
-    s.style.cssText = `
-      left:${Math.random()*100}%;
-      top:${Math.random()*60}%;
-      animation-duration:${2+Math.random()*4}s;
-      animation-delay:-${Math.random()*4}s;
-    `;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*60}%;animation-duration:${2+Math.random()*4}s;animation-delay:-${Math.random()*4}s;`;
     bg.appendChild(s);
   }
 }
@@ -1330,32 +1345,17 @@ function spawnStars() {
 // KEYBOARD NAVIGATION
 // ============================================================
 document.addEventListener('keydown', (e) => {
+  // Don't hijack keys while the user is typing in an input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+
   switch(e.key) {
-    case 'ArrowRight':
-    case 'ArrowDown':
-    case ' ':
-    case 'PageDown':
-      e.preventDefault();
-      changeSlide(1);
-      break;
-    case 'ArrowLeft':
-    case 'ArrowUp':
-    case 'PageUp':
-      e.preventDefault();
-      changeSlide(-1);
-      break;
-    case 'Home':
-      e.preventDefault();
-      showSlide(0, -1);
-      break;
-    case 'End':
-      e.preventDefault();
-      showSlide(SLIDES.length - 1, 1);
-      break;
-    case 'f':
-    case 'F':
-      toggleFullscreen();
-      break;
+    case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown':
+      e.preventDefault(); changeSlide(1); break;
+    case 'ArrowLeft': case 'ArrowUp': case 'PageUp':
+      e.preventDefault(); changeSlide(-1); break;
+    case 'Home': e.preventDefault(); showSlide(0, -1); break;
+    case 'End':  e.preventDefault(); showSlide(SLIDES.length - 1, 1); break;
+    case 'f': case 'F': toggleFullscreen(); break;
   }
 });
 
@@ -1363,11 +1363,8 @@ document.addEventListener('keydown', (e) => {
 // FULLSCREEN
 // ============================================================
 function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch(() => {});
-  } else {
-    document.exitFullscreen().catch(() => {});
-  }
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+  else document.exitFullscreen().catch(() => {});
 }
 
 // ============================================================
